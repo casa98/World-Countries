@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_countries/ui/countries.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -6,7 +7,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List regions = ['ALL', 'AFRICA', 'AMERICAS', 'ASIA', 'EUROPE', 'OCEANIA'];
+  List regions = ['all', 'africa', 'americas', 'asia', 'europe', 'oceania'];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget getCard(index) {
     return Card(
-      margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+      margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
       elevation: 3,
       color: Colors.blueGrey[50],
       shape: RoundedRectangleBorder(
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           width: double.infinity,
           child: Center(
             child: Text(
-              regions[index],
+              regions[index].toString().toUpperCase(),
               style: TextStyle(
                 fontSize: 18.0,
               ),
@@ -41,6 +42,12 @@ class _HomePageState extends State<HomePage> {
         ),
         onTap: () {
           print("You tapped: ${regions[index]}");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Countries(regions[index]),
+            ),
+          );
         },
       ),
     );
